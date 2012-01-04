@@ -1,0 +1,120 @@
+<html>
+<head>
+	<title>Documentacion sobre dmSMFInvite.</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		body {padding:0px; width:100%; background:#333; color:#FFF; font-size:12px; font-family:Arial;}
+		.content {margin: 0px auto; padding:10px; background:#555; width:70%; border:#777 2px solid;}
+		h1 {color:#E1E1E1; margin:0px; padding:0px; letter-spacing:1px;}
+		.text {font-size:14px; padding:10px;}
+		.separator {width:100%; min-height:1px; border:none; border-bottom:#CCC 1px dashed;}
+		h2 {margin:0px; padding:5px;}
+		.text b {color:beige;}
+		a {text-decoration:none; color:#FFF;}
+		a:hover {text-decoration:none; color:#CCC;}
+		a:visited {text-decoration:none; color:#FFF;}
+		a:active {text-decoration:none; color:#FFF;}
+		.donate {display:fixed; position:fixed; bottom:1px; padding:10px; }
+		.donate p {background:#777; padding:5px; text-shadow:#CCC 0px 0px 5px;border-radius:10px; box-shadow:#FFFF00 0px 0px 5px;}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h1>dmSMFInvite</h1>
+		<span><u>Sistema de Invitaciones para SMF por drvymonkey.</u></span>
+		<p>
+		Contenidos:
+		<ul>
+			<li>¿Que es?</li>
+			<li>Explicación de archivos.</li>
+			<li>Puesta en marcha.</li>
+			<li>Administracion.</li>
+			<li>Desinstalacion.</li>		
+			<li>Contacto / Soporte.</li>
+		</ul>
+		</p>
+		<div class="separator"></div>
+		<h2>¿Que es?</h2>
+		<div class="text">
+			<p>dmSMFInvite, es una aplicación desarrollada por DrvyMonkey (dm), 
+			que permite el envió y/o manejo de invitaciones para el cms SMF (Simple Machines Forums). 
+			Esta basada en PHP y requiere de MySql para poder trabajar.</p>
+			
+			<p>dmSMFInvite, es una aplicación totalmente separada de SMF, y aunque requiera, archivos como
+			SSI.php o el Settings.php, esta no afecta de ningún modo a SMF.</p>
+		</div>
+		<div class="separator"></div>
+		<h2>Explicación de archivos.</h2>
+		<div class="text">
+			<p>dmSMFInvite, contiene una simple esquema de archivos.</p>
+			<p>Archivo <b>dmSMFInvite.php</b> - Contiene todo el procedimiento y las funciones necesarias para
+			que esta aplicación pueda trabajar. NO se recomienda editar, a no ser que sea muy necesario.</p>
+			<p>Archivo <b>index.php</b> - Al igual que _saveadmin y _invite, contiene la cara principal de la 
+			aplicación. Esta procesa la información devuelta por dmSMFInvite.php.<br /> Si el usuario es administrador, 
+			podrá cambiar la configuración por defecto, pudiendo cambiar desde el limite de invitaciones 
+			hasta el nuevo rango que tendrán los usuarios invitados.</p>
+			<p>Archivo <b>dmSMFInvite_config.php</b> - Es el archivo que contiene toda la información necesaria
+			para que la aplicación pueda funcionar. Desde los datos para la conexión a la base de datos, hasta
+			el "diseño" que tendrá el email.</p>
+			<p>Archivo <b>dmSMFInstall.php</b> - Este archivo desaparecerá (o debe eliminarse) al terminar la
+			instalación de la aplicación. Solo podrá ser ejecutado por un administrador y permite crear y popular
+			las tablas necesarias para que la aplicación funcione. Para ello, se necesita, que el dmSMFInvite_config.php
+			ya este configurado previamente.</p>
+			<p>Archivo <b>dmSMFUninstall.php</b> - Solo podrá ser ejecutado por un administrador y si previamente
+			se ha definido una contraseña para poder ser des-instalado. Permite la eliminación de las tablas, para
+			no dejar restos en la base de datos.</p>
+			<p>Archivo <b>verify.php</b> - Es el encargado de procesar los miembros invitados, haciéndoles
+			introducir un código (normalmente este se introduce automáticamente) para poder cambiar de rango.
+			Si el sistema de invitaciones no cambia automáticamente el rango. Este archivo no se debería usar.</p>
+			<p><b>Otros archivos</b> - Otros archivos como los terminantes en .log son los encargados de guardar
+			los registros de uso. Estos archivos no deberían ser mostrados al publico, ya que
+			contienen información sensible sobre la aplicación y/o errores del sistema.</p>
+		</div>
+		<div class="separator"></div>
+		<h2>Puesta en marcha</h2><div class="text">
+			<p>Para poder utilizar esta aplicación es necesario seguir unos pasos previos.</p>
+			<p>Primero, se debe configurar el archivo <b>dmSMFInvite_config.php</b> con los
+			parámetros necesarios para hacer la conexión a la base de datos. Todas la variables
+			en dicho documento vienen explicadas (bajo comentarios). Una vez hecha esta acción,
+			se debe proceder a abrir el archivo <b>dmSMFInstall.php</b> bajo previlegios de 
+			administrador del SMF (con cuenta administrador autentificada en smf). Este, procederá
+			a crear y popular las tablas necesarias en la base de datos por defecto de SMF.</p></div>
+	<div class="separator"></div>
+	<h2>Administración</h2>
+	<div class="text">
+	<p>La administración o configuración, puede ser cambiada desde el <b>index.php</b>. Para ello
+	un administrador del foro debe acceder como normalmente lo haría para enviar una invitación.</p>
+	</div>
+	<div class="separator"></div>
+	<h2>Des-instalación</h2>
+	<div class="text"><p>
+	Para des-instalar esta aplicación, primero debes haber establecido una contraseña en el archivo
+	<b>dmSMFInvite_config.php</b> mayor a 4 caracteres. Esta es una medida preventiva. <b>SI NO ES NECESARIO,
+	NO DEFINA DICHA CONTRASEÑA, YA QUE PUEDE SUPONER UN RIESGO PARA SU INSTALACION</b>, ademas, debes ser
+	administrador del foro para poder continuar.
+	</p>
+	<p>Una vez completado el procedimiento, debes ejecutar el archivo <b>dmSMFUninstall.php</b>
+	y seguir los pasos necesarios. Esto hará que las tablas (y su contenido) se eliminen. <br /> Una vez
+	completado, podrás borrar los archivos y/o el directorio de la aplicación.</p></div>
+	<div class="separator"></div>
+	<h2>Contacto - Soporte</h2>
+	<div class="text">
+	<p>Para contactar con el creador de esta applicacion, puede usar varias vias.</p>
+	<p><b>Twitter</b> - drvymonkey<br /><b>Web</b> - <a href="http://drvy.net" title="Drvymonkey">www.drvy.net</a>
+	<br /><b>Email</b> - bad.stupid.monkey@gmail.com</p>	
+	<p>El soporte official no esta incluido. Cualquier error/falta/bug/otros puede ser reportado y los problemas
+	podran ser solucionados. Pero el autor (drvymonkey) no se compromete a contestar y/o arreglar estos.</p>
+	</div>
+	</div>
+	<div class="donate">
+	<p>Si te ha gustado esta <br />applicacion, considera 
+	<br />donar.  Aunque sea 1€, <br />me haras muy feliz :)<br /></p>
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="XQSKHD4KGXPMN">
+<input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+<img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+</form>	
+	</div>
+</body>
+</html>
